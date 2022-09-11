@@ -13,7 +13,7 @@
       "@types/*": ["./src/types/*"],
       "@utils/*": ["./src/utils/*"],
       "@config": ["./src/config"],
-      "@theme": ["./src/theme"],
+      "@theme": ["./src/theme"]
     }
   }
 }

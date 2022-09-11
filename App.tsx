@@ -1,13 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import RootNavigator from '@navigation/RootNavigator'
+import { StatusBar } from 'expo-status-bar'
+import React from 'react'
+import { StyleSheet } from 'react-native'
+import { Provider as PaperProvider } from 'react-native-paper'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <SafeAreaProvider>
+      <PaperProvider>
+        <StatusBar style="auto" translucent />
+        <RootNavigator />
+      </PaperProvider>
+    </SafeAreaProvider>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -15,6 +21,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    justifyContent: 'center'
+  }
+})
