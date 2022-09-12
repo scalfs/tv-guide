@@ -1,16 +1,15 @@
-import { ShowsSearchResult, Show } from '../types/tvmaze'
+import { Show, ShowsSearchResult } from '@types'
+
 import api from './api'
 
-const fetchShows = async (page: number) => {
+export const fetchShows = async ({ pageParam: page = 0 }) => {
   const response = await api.get<Show[]>('/shows', { params: { page } })
   return response.data
 }
 
-const searchShows = async (query: string) => {
+export const searchShows = async (query: string) => {
   const response = await api.get<ShowsSearchResult[]>('/search/shows', {
     params: { query }
   })
   return response.data
 }
-
-export default { fetchShows, searchShows }
