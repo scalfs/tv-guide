@@ -1,48 +1,21 @@
-import { NavigationContainer } from '@react-navigation/native'
-import Favorites from '@screens/Favorites'
-import Shows from '@screens/Shows'
-import { useState } from 'react'
-import { BottomNavigation } from 'react-native-paper'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import ShowDetails from '@screens/ShowDetails'
+import { RootStackParamList } from '@types'
 
-// undefined means that the route doesn't have params
-export type RootStackParamList = object
+import BottomNavigator from './BottomNavigator'
+
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 const RootNavigator = () => {
   return (
-    <NavigationContainer>
-      <BottomNavigator />
-    </NavigationContainer>
-  )
-}
-
-const BottomNavigator = () => {
-  const [index, setIndex] = useState(0)
-  const [routes] = useState([
-    {
-      key: 'home',
-      title: 'Home',
-      focusedIcon: 'movie',
-      unfocusedIcon: 'movie-outline'
-    },
-    {
-      key: 'favorites',
-      title: 'Favorites',
-      focusedIcon: 'star',
-      unfocusedIcon: 'star-outline'
-    }
-  ])
-  const renderScene = BottomNavigation.SceneMap({
-    home: Shows,
-    favorites: Favorites
-  })
-
-  return (
-    <BottomNavigation
-      compact
-      navigationState={{ index, routes }}
-      onIndexChange={setIndex}
-      renderScene={renderScene}
-    />
+    <Stack.Navigator initialRouteName="Main">
+      <Stack.Screen
+        name="Main"
+        component={BottomNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name="ShowDetails" component={ShowDetails} />
+    </Stack.Navigator>
   )
 }
 
