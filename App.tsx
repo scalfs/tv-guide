@@ -1,26 +1,24 @@
 import RootNavigator from '@navigation/RootNavigator'
+import { NavigationContainer } from '@react-navigation/native'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { DarkTheme } from '@theme'
 import { StatusBar } from 'expo-status-bar'
-import React from 'react'
-import { StyleSheet } from 'react-native'
 import { Provider as PaperProvider } from 'react-native-paper'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+
+const queryClient = new QueryClient()
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <PaperProvider>
-        <StatusBar style="auto" translucent />
-        <RootNavigator />
-      </PaperProvider>
+      <QueryClientProvider client={queryClient}>
+        <PaperProvider theme={DarkTheme}>
+          <NavigationContainer theme={DarkTheme}>
+            <StatusBar style="light" translucent />
+            <RootNavigator />
+          </NavigationContainer>
+        </PaperProvider>
+      </QueryClientProvider>
     </SafeAreaProvider>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-})
