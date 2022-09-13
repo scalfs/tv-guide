@@ -1,18 +1,17 @@
+import Summary from '@components/Summary'
 import { ShowDetailsScreenProps } from '@types'
 import { useState } from 'react'
 import { Image, StyleSheet, View } from 'react-native'
 import { Appbar, Chip, Text } from 'react-native-paper'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const ShowDetails = ({ navigation, route }: ShowDetailsScreenProps) => {
   const { show } = route.params
-  const { top } = useSafeAreaInsets()
 
   const [isFavorite, setFavorite] = useState(false)
 
   return (
     <View style={styles.container}>
-      <Appbar.Header style={{ paddingTop: top }}>
+      <Appbar.Header>
         <Appbar.BackAction onPress={navigation.goBack} />
         <Appbar.Content title="Details" />
         <Appbar.Action
@@ -43,6 +42,7 @@ const ShowDetails = ({ navigation, route }: ShowDetailsScreenProps) => {
           </View>
         </View>
       </View>
+      <Summary element={show.summary} />
     </View>
   )
 }
