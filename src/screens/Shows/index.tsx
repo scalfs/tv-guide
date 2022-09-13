@@ -5,9 +5,9 @@ import { fetchShows } from '@services/shows'
 import { FlashList } from '@shopify/flash-list'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { Show, ShowsScreenProps } from '@types'
-import { StyleSheet, View } from 'react-native'
-import { ActivityIndicator } from 'react-native-paper'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
+import * as S from './styles'
 
 const Shows = ({ navigation }: ShowsScreenProps) => {
   const { top } = useSafeAreaInsets()
@@ -31,13 +31,13 @@ const Shows = ({ navigation }: ShowsScreenProps) => {
     )
   }
 
-  const renderFetching = () => <ActivityIndicator animating />
+  const renderFetching = () => <S.ActivityIndicator animating />
 
   if (isLoading) return <></>
   if (isError) return <></>
 
   return (
-    <View style={styles.container}>
+    <S.Container>
       <FlashList
         renderItem={renderData}
         numColumns={gridColumns}
@@ -48,17 +48,11 @@ const Shows = ({ navigation }: ShowsScreenProps) => {
         onEndReached={fetchNextPage}
         contentContainerStyle={{ paddingTop: top }}
         keyExtractor={(item) => item.id.toString()}
-        ListFooterComponentStyle={styles.loading}
         ListFooterComponent={isFetchingNextPage ? renderFetching : null}
       />
       <SearchFAB />
-    </View>
+    </S.Container>
   )
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, paddingHorizontal: 8 },
-  loading: { marginVertical: 16 }
-})
 
 export default Shows

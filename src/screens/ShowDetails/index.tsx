@@ -1,8 +1,11 @@
+import Schedule from '@components/Schedule'
 import Summary from '@components/Summary'
 import { ShowDetailsScreenProps } from '@types'
 import { useState } from 'react'
-import { Image, StyleSheet, View } from 'react-native'
-import { Appbar, Chip, Text } from 'react-native-paper'
+import { View } from 'react-native'
+import { Appbar, Divider, Text } from 'react-native-paper'
+
+import * as S from './styles'
 
 const ShowDetails = ({ navigation, route }: ShowDetailsScreenProps) => {
   const { show } = route.params
@@ -10,7 +13,7 @@ const ShowDetails = ({ navigation, route }: ShowDetailsScreenProps) => {
   const [isFavorite, setFavorite] = useState(false)
 
   return (
-    <View style={styles.container}>
+    <View>
       <Appbar.Header>
         <Appbar.BackAction onPress={navigation.goBack} />
         <Appbar.Content title="Details" />
@@ -20,37 +23,40 @@ const ShowDetails = ({ navigation, route }: ShowDetailsScreenProps) => {
         />
       </Appbar.Header>
 
-      <View style={styles.topRow}>
-        <Image
-          source={{ uri: show.image?.original }}
-          style={styles.image}
-          resizeMode="contain"
-        />
-        <View style={{ flex: 1 }}>
-          <Text variant="headlineSmall">{show.name}</Text>
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-            {show.genres.map((genre) => (
-              <Chip
-                compact
-                key={genre}
-                style={{ margin: 2 }}
-                textStyle={{ fontSize: 12 }}
-              >
-                {genre}
-              </Chip>
-            ))}
+      <S.Container>
+        <S.TopRow>
+          <S.Image
+            source={{ uri: show.image?.original }}
+            resizeMode="contain"
+          />
+
+          <View style={{ flex: 1 }}>
+            <S.Headline variant="headlineLarge">{show.name}</S.Headline>
+
+            <S.ChipsContainer>
+              {show.genres.map((genre) => (
+                <S.Chip compact key={genre} textStyle={{ fontSize: 12 }}>
+                  {genre}
+                </S.Chip>
+              ))}
+            </S.ChipsContainer>
           </View>
-        </View>
-      </View>
-      <Summary element={show.summary} />
+        </S.TopRow>
+
+        <Text variant="titleLarge">Sumary</Text>
+        <Divider />
+        <Summary element={show.summary} />
+
+        <Text variant="titleLarge">Show Info</Text>
+        <Divider />
+        <Schedule
+          schedule={show.schedule}
+          runtime={show.averageRuntime}
+          displayTitle
+        />
+      </S.Container>
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-  topRow: { flexDirection: 'row', width: '100%' },
-  image: { width: 126, height: 177 }
-})
 
 export default ShowDetails

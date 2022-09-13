@@ -4,9 +4,10 @@ import useDebounce from '@hooks/useDebounce'
 import { searchPeople } from '@services/people'
 import { Person, SearchPeopleScreenProps } from '@types'
 import { useState } from 'react'
-import { StyleSheet, View } from 'react-native'
 import { Searchbar } from 'react-native-paper'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
+import * as S from './styles'
 
 const SearchPeople = ({ navigation }: SearchPeopleScreenProps) => {
   const [searchQuery, setSearchQuery] = useState('')
@@ -29,7 +30,7 @@ const SearchPeople = ({ navigation }: SearchPeopleScreenProps) => {
   }
 
   return (
-    <View style={[styles.container, { marginBottom: bottom }]}>
+    <S.Container bottom={bottom}>
       <Searchbar
         autoFocus
         value={searchQuery}
@@ -45,12 +46,8 @@ const SearchPeople = ({ navigation }: SearchPeopleScreenProps) => {
         queryFn={searchPeople}
         renderData={renderData}
       />
-    </View>
+    </S.Container>
   )
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, paddingHorizontal: 8 }
-})
 
 export default SearchPeople

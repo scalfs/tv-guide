@@ -1,12 +1,33 @@
+import { fetchCastCredits } from '@services/people'
+import { useQuery } from '@tanstack/react-query'
+import { PersonDetailsScreenProps } from '@types'
 import React from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
+import { Appbar } from 'react-native-paper'
 
-type Props = object
+import * as S from './styles'
 
-const PersonDetails = (props: Props) => {
+const PersonDetails = ({ navigation, route }: PersonDetailsScreenProps) => {
+  const { person } = route.params
+  const { isLoading, isError } = useQuery(['person', person.id], () =>
+    fetchCastCredits(person.id)
+  )
+
+  if (isLoading) return null
+  if (isError) return null
+
   return (
     <View>
-      <Text>PersonDetails</Text>
+      <Appbar.Header>
+        <Appbar.BackAction onPress={navigation.goBack} />
+        <Appbar.Content title="Details" />
+      </Appbar.Header>
+      <S.Container>
+        <S.TopRow>
+          <S.Image source={{ uri: person.image.original }} />
+          <S.Headline variant="headlineLarge">{person.name}</S.Headline>
+        </S.TopRow>
+      </S.Container>
     </View>
   )
 }

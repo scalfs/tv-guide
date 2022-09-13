@@ -10,10 +10,7 @@ const Summary = ({ element }: Props) => {
   const { colors } = useTheme()
   const { width } = useWindowDimensions()
 
-  const baseStyle: MixedStyleDeclaration = {
-    color: colors.text,
-    paddingHorizontal: 16
-  }
+  const baseStyle: MixedStyleDeclaration = { color: colors.text }
 
   return (
     <RenderHTML
