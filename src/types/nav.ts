@@ -1,6 +1,15 @@
-import { MaterialBottomTabScreenProps } from '@react-navigation/material-bottom-tabs'
-import { CompositeScreenProps } from '@react-navigation/native'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import {
+  MaterialBottomTabNavigationProp,
+  MaterialBottomTabScreenProps
+} from '@react-navigation/material-bottom-tabs'
+import {
+  CompositeNavigationProp,
+  CompositeScreenProps
+} from '@react-navigation/native'
+import {
+  NativeStackNavigationProp,
+  NativeStackScreenProps
+} from '@react-navigation/native-stack'
 
 import { Person, Show } from './tvmaze'
 
@@ -20,6 +29,11 @@ export type BottomTabsParamList = {
 export type ShowsScreenProps = CompositeScreenProps<
   MaterialBottomTabScreenProps<BottomTabsParamList, 'Shows'>,
   NativeStackScreenProps<RootStackParamList>
+>
+
+export type ShowsScreenNavigationProp = CompositeNavigationProp<
+  MaterialBottomTabNavigationProp<BottomTabsParamList, 'Shows'>,
+  NativeStackNavigationProp<RootStackParamList>
 >
 
 export type ShowDetailsScreenProps = NativeStackScreenProps<

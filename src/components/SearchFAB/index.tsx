@@ -1,12 +1,12 @@
 import { useIsFocused, useNavigation } from '@react-navigation/native'
-import { ShowsScreenProps } from '@types'
+import { ShowsScreenNavigationProp } from '@types'
 import { useCallback, useState } from 'react'
 import { FAB } from 'react-native-paper'
 
 const SearchFAB = () => {
   const isFocused = useIsFocused()
   const [open, setOpen] = useState(false)
-  const { navigation } = useNavigation<ShowsScreenProps>()
+  const navigation = useNavigation<ShowsScreenNavigationProp>()
 
   const onStateChange = useCallback(() => setOpen((open) => !open), [setOpen])
 
