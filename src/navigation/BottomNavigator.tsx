@@ -3,6 +3,13 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import Favorites from '@screens/Favorites'
 import Shows from '@screens/Shows'
 import { BottomTabsParamList } from '@types'
+import * as NavigationBar from 'expo-navigation-bar'
+import { Platform } from 'react-native'
+
+if (Platform.OS === 'android') {
+  NavigationBar.setButtonStyleAsync('light')
+  NavigationBar.setBackgroundColorAsync('#2C2831')
+}
 
 const Tab = createMaterialBottomTabNavigator<BottomTabsParamList>()
 
@@ -10,7 +17,7 @@ const BottomNavigator = () => {
   return (
     <Tab.Navigator compact>
       <Tab.Screen
-        name="Home"
+        name="Shows"
         component={Shows}
         options={{
           tabBarIcon: ({ focused, color }) => (
