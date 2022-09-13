@@ -42,7 +42,7 @@ const Shows = ({ navigation }: ShowsScreenProps) => {
         renderItem={renderData}
         numColumns={gridColumns}
         indicatorStyle="white"
-        data={data.pages.flat()}
+        data={data?.pages.flat()}
         estimatedItemSize={CARD_HEIGHT}
         onEndReachedThreshold={0.8}
         onEndReached={fetchNextPage}
