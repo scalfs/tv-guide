@@ -1,3 +1,4 @@
+import Background from '@components/Background'
 import RootNavigator from '@navigation/RootNavigator'
 import { NavigationContainer } from '@react-navigation/native'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -15,6 +16,7 @@ export default function App() {
         <PaperProvider theme={DarkTheme}>
           <NavigationContainer theme={DarkTheme}>
             <StatusBar style="light" translucent />
+            <Background />
             <RootNavigator />
           </NavigationContainer>
         </PaperProvider>
