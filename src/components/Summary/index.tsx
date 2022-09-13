@@ -4,9 +4,10 @@ import RenderHTML, { MixedStyleDeclaration } from 'react-native-render-html'
 
 type Props = {
   element: string
+  widthDiff?: number
 }
 
-const Summary = ({ element }: Props) => {
+const Summary = ({ element, widthDiff = 0 }: Props) => {
   const { colors } = useTheme()
   const { width } = useWindowDimensions()
 
@@ -14,7 +15,7 @@ const Summary = ({ element }: Props) => {
 
   return (
     <RenderHTML
-      contentWidth={width}
+      contentWidth={width - widthDiff}
       baseStyle={baseStyle}
       source={{ html: element }}
     />

@@ -23,6 +23,23 @@ export interface Show {
   updated: number
 }
 
+export interface Episode {
+  id: number
+  url: string
+  name: string
+  season: number
+  number: number
+  type: string
+  airdate: string
+  airtime: string
+  airstamp: string
+  runtime: number
+  rating: { average: number }
+  image: Image | null
+  summary: string
+  _links: { self: { href: string } }
+}
+
 export interface Person {
   id: number
   url: string

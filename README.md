@@ -33,13 +33,13 @@ Application for listing TV series, using TVMaze's API. The app is written in Rea
     - [x] Air times (schedule)
     - [x] Genres
     - [x] Summary
-    - [ ] Episodes, filtered by season
-  - [ ] Displaying episode's details
-    - [ ] Name
-    - [ ] Number
-    - [ ] Season
-    - [ ] Summary
-    - [ ] Image
+    - [x] Episodes, filtered by season
+  - [x] Displaying episode's details
+    - [x] Name
+    - [x] Number
+    - [x] Season
+    - [x] Summary
+    - [x] Image
 
 - Bonus
   - [ ] Pin authorization

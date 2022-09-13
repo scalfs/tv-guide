@@ -11,7 +11,7 @@ import {
   NativeStackScreenProps
 } from '@react-navigation/native-stack'
 
-import { Person, Show } from './tvmaze'
+import { Episode, Person, Show } from './tvmaze'
 
 export type RootStackParamList = {
   Main: undefined
@@ -19,6 +19,7 @@ export type RootStackParamList = {
   SearchPeople: undefined
   ShowDetails: { show: Show }
   PersonDetails: { person: Person }
+  EpisodeDetails: { episode: Episode }
 }
 
 export type BottomTabsParamList = {
@@ -39,6 +40,16 @@ export type ShowsScreenNavigationProp = CompositeNavigationProp<
 export type ShowDetailsScreenProps = NativeStackScreenProps<
   RootStackParamList,
   'ShowDetails'
+>
+
+export type ShowDetailsScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'ShowDetails'
+>
+
+export type EpisodeDetailsScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  'EpisodeDetails'
 >
 
 export type PersonDetailsScreenProps = NativeStackScreenProps<

@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import EpisodeDetails from '@screens/EpisodeDetails'
 import PersonDetails from '@screens/PersonDetails'
 import SearchPeople from '@screens/SearchPeople'
 import SearchShows from '@screens/SearchShows'
@@ -20,6 +21,7 @@ const RootNavigator = () => {
       <Stack.Screen name="SearchShows" component={SearchShows} />
       <Stack.Screen name="SearchPeople" component={SearchPeople} />
       <Stack.Screen name="PersonDetails" component={PersonDetails} />
+      <Stack.Screen name="EpisodeDetails" component={EpisodeDetails} />
     </Stack.Navigator>
   )
 }
