@@ -6,10 +6,13 @@
       "distribution": "internal"
     },
     "preview": {
+      "channel": "preview",
       "android": { "buildType": "apk" },
       "ios": { "simulator": true }
     },
-    "production": {}
+    "production": {
+      "channel": "production"
+    }
   },
   "submit": { "production": {} }
 }
