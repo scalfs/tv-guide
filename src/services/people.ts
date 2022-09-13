@@ -4,9 +4,9 @@ import api from './api'
 
 export const searchPeople = async (query: string) => {
   const response = await api.get<PeopleSearchResult[]>('/search/people', {
-    params: { query }
+    params: { q: query }
   })
-  return response.data
+  return response.data.map((result) => result.person)
 }
 
 export const fetchCastCredits = async (personId: number) => {

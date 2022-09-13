@@ -1,15 +1,16 @@
-import ShowCard, { CARD_HEIGHT, CARD_WIDTH } from '@components/ShowCard'
+import CardItem from '@components/CardItem'
+import SearchFAB from '@components/SearchFAB'
+import { CARD_HEIGHT, gridColumns } from '@config'
 import { fetchShows } from '@services/shows'
 import { FlashList } from '@shopify/flash-list'
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { HomeScreenProps, Show } from '@types'
-import { Dimensions, StyleSheet } from 'react-native'
+import { Show, ShowsScreenProps } from '@types'
+import { StyleSheet, View } from 'react-native'
 import { ActivityIndicator } from 'react-native-paper'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-const numColumns = Math.floor(Dimensions.get('screen').width / CARD_WIDTH)
-
-const Shows = ({ navigation }: HomeScreenProps) => {
+const Shows = ({ navigation }: ShowsScreenProps) => {
+  const { top } = useSafeAreaInsets()
   const { data, isLoading, isError, isFetchingNextPage, fetchNextPage } =
     useInfiniteQuery(['shows'], fetchShows, {
       getNextPageParam: (lastPage, allPages) => {
@@ -18,16 +19,13 @@ const Shows = ({ navigation }: HomeScreenProps) => {
       }
     })
 
-  if (isLoading) return <></>
-  if (isError) return <></>
-
   const onPress = (show: Show) => navigation.navigate('ShowDetails', { show })
 
   const renderData = ({ item }: { item: Show }) => {
     return (
-      <ShowCard
+      <CardItem
         title={item.name}
-        image={item.image.medium}
+        image={item.image?.medium}
         onPress={() => onPress(item)}
       />
     )
@@ -35,21 +33,26 @@ const Shows = ({ navigation }: HomeScreenProps) => {
 
   const renderFetching = () => <ActivityIndicator animating />
 
+  if (isLoading) return <></>
+  if (isError) return <></>
+
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <FlashList
         renderItem={renderData}
-        numColumns={numColumns}
+        numColumns={gridColumns}
         indicatorStyle="white"
         data={data.pages.flat()}
         estimatedItemSize={CARD_HEIGHT}
         onEndReachedThreshold={0.8}
         onEndReached={fetchNextPage}
+        contentContainerStyle={{ paddingTop: top }}
         keyExtractor={(item) => item.id.toString()}
         ListFooterComponentStyle={styles.loading}
         ListFooterComponent={isFetchingNextPage ? renderFetching : null}
       />
-    </SafeAreaView>
+      <SearchFAB />
+    </View>
   )
 }
 

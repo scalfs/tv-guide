@@ -1,16 +1,14 @@
+import { CARD_WIDTH } from '@config'
 import { StyleSheet, View } from 'react-native'
 import { Card, TouchableRipple } from 'react-native-paper'
 
 type Props = {
-  image: string
+  image?: string
   title: string
   onPress: () => void
 }
 
-export const CARD_WIDTH = 180
-export const CARD_HEIGHT = 238
-
-const ShowCard = ({ image, title, onPress }: Props) => {
+const CardItem = ({ image, title, onPress }: Props) => {
   return (
     <TouchableRipple style={styles.container} onPress={onPress}>
       <View style={styles.content}>
@@ -35,4 +33,4 @@ const styles = StyleSheet.create({
   image: { backgroundColor: 'transparent' }
 })
 
-export default ShowCard
+export default CardItem

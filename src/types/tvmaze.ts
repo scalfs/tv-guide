@@ -18,7 +18,7 @@ export interface Show {
   webChannel: string | null
   dvdCountry: string | null
   externals: Externals
-  image: Image
+  image: Image | null
   summary: string
   updated: number
 }
