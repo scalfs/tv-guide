@@ -46,7 +46,9 @@ const ShowDetails = ({ navigation, route }: ShowDetailsScreenProps) => {
         <Divider />
         <Summary element={show.summary} />
 
-        <S.Title variant="titleLarge">Show Info</S.Title>
+        <S.Title variant="titleLarge" top={16}>
+          Show Info
+        </S.Title>
         <Divider />
         <Schedule
           schedule={show.schedule}
@@ -54,7 +56,7 @@ const ShowDetails = ({ navigation, route }: ShowDetailsScreenProps) => {
           displayTitle
         />
 
-        <S.Title variant="titleLarge" top={16}>
+        <S.Title variant="titleLarge" top={32}>
           Episodes
         </S.Title>
         <Divider />

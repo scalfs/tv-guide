@@ -10,6 +10,7 @@ export const Container = styled.ScrollView<{ insets: EdgeInsets }>`
 export const TopRow = styled.View`
   flex-direction: row;
   align-items: flex-end;
+  margin-bottom: 16px;
 `
 
 export const Image = styled.Image`
