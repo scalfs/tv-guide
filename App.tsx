@@ -1,3 +1,4 @@
+import AnimatedAppLoader from '@components/AnimatedAppLoader'
 import Background from '@components/Background'
 import RootNavigator from '@navigation/RootNavigator'
 import { NavigationContainer } from '@react-navigation/native'
@@ -17,7 +18,9 @@ export default function App() {
           <NavigationContainer theme={DarkTheme}>
             <StatusBar style="light" translucent />
             <Background />
-            <RootNavigator />
+            <AnimatedAppLoader>
+              <RootNavigator />
+            </AnimatedAppLoader>
           </NavigationContainer>
         </PaperProvider>
       </QueryClientProvider>
