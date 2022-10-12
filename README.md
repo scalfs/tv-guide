@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <b>Jobsity React Native Code Challenge</b>
+  <b>React Native Code Challenge</b>
 
   <br />
 
